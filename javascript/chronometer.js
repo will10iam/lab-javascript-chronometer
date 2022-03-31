@@ -6,7 +6,10 @@ class Chronometer {
 
   start(callback) {
     this.intervalId = setInterval(() => {
-      this.currentTime += 1 
+      this.currentTime += 1;
+      if (callback) {
+        callback();
+      }
     }, 1000)
   }
 
@@ -18,12 +21,12 @@ class Chronometer {
     return this.currentTime % 60;
   }
 
-  computeTwoDigitNumber(digit) {
-    if (digit.length === 1) {
-      return `0${digit}`;
+  computeTwoDigitNumber(value) {
+    if (value < 10) {
+      return `0${value}`;
     } 
-      return `${digit}`;
-  } // teste ainda pede pra retornar uma string de tamanho 2
+      return `${value}`;
+  } 
 
   stop() {
     clearInterval(this.intervalId);
